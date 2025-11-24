@@ -640,6 +640,14 @@ pub async fn run_submit_tui(
         }
         std::fs::write(&output_path, &result_text)
             .map_err(|e| anyhow!("Failed to write result to file {}: {}", output_path, e))?;
+        // Exit immediately after writing output
+        disable_raw_mode()?;
+        crossterm::execute!(
+            terminal.backend_mut(),
+            crossterm::terminal::LeaveAlternateScreen
+        )?;
+        terminal.show_cursor()?;
+        return Ok(());
     }
 
     let state = &mut app.result_page_state;
