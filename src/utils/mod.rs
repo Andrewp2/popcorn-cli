@@ -1,6 +1,6 @@
+use anyhow::Result;
 use std::fs;
 use std::path::Path;
-use anyhow::Result;
 
 pub struct PopcornDirectives {
     pub leaderboard_name: String,
@@ -9,7 +9,7 @@ pub struct PopcornDirectives {
 
 pub fn get_popcorn_directives<P: AsRef<Path>>(filepath: P) -> Result<(PopcornDirectives, bool)> {
     let content = fs::read_to_string(filepath)?;
-    
+
     let mut gpus: Vec<String> = Vec::new();
     let mut leaderboard_name = String::new();
     let mut has_multiple_gpus = false;
@@ -44,7 +44,7 @@ pub fn get_popcorn_directives<P: AsRef<Path>>(filepath: P) -> Result<(PopcornDir
             leaderboard_name,
             gpus,
         },
-        has_multiple_gpus
+        has_multiple_gpus,
     ))
 }
 
@@ -53,12 +53,12 @@ pub fn get_ascii_art_frame(frame: u16) -> String {
     match frame {
         0 => r#"
             ▗▖ ▗▖▗▄▄▄▖▗▄▄▖ ▗▖  ▗▖▗▄▄▄▖▗▖   ▗▄▄▖  ▗▄▖ ▗▄▄▄▖
-            ▐▌▗▞▘▐▌   ▐▌ ▐▌▐▛▚▖▐▌▐▌   ▐▌   ▐▌ ▐▌▐▌ ▐▌  █  
-            ▐▛▚▖ ▐▛▀▀▘▐▛▀▚▖▐▌ ▝▜▌▐▛▀▀▘▐▌   ▐▛▀▚▖▐▌ ▐▌  █  
-            ▐▌ ▐▌▐▙▄▄▖▐▌ ▐▌▐▌  ▐▌▐▙▄▄▖▐▙▄▄▖▐▙▄▞▘▝▚▄▞▘  █  
+            ▐▌▗▞▘▐▌   ▐▌ ▐▌▐▛▚▖▐▌▐▌   ▐▌   ▐▌ ▐▌▐▌ ▐▌  █
+            ▐▛▚▖ ▐▛▀▀▘▐▛▀▚▖▐▌ ▝▜▌▐▛▀▀▘▐▌   ▐▛▀▚▖▐▌ ▐▌  █
+            ▐▌ ▐▌▐▙▄▄▖▐▌ ▐▌▐▌  ▐▌▐▙▄▄▖▐▙▄▄▖▐▙▄▞▘▝▚▄▞▘  █
 
                       POPCORN CLI - GPU MODE
-             
+
           ┌────────────────────────────────────────────┐
           │  ╔══════════════════════════════════╗    ϟ │
           │  ║ ▄▄ Graphics Processing Unit  ▄▄║ ║      │▒
@@ -74,15 +74,15 @@ pub fn get_ascii_art_frame(frame: u16) -> String {
           │  └──────────────────────────────────┘      │▒
           └────────────────────────────────────────────┘▒
            ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-             ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀"#.to_string(),
+             ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀"#
         1 => r#"
             ▗▖ ▗▖▗▄▄▄▖▗▄▄▖ ▗▖  ▗▖▗▄▄▄▖▗▖   ▗▄▄▖  ▗▄▖ ▗▄▄▄▖
-            ▐▌▗▞▘▐▌   ▐▌ ▐▌▐▛▚▖▐▌▐▌   ▐▌   ▐▌ ▐▌▐▌ ▐▌  █  
-            ▐▛▚▖ ▐▛▀▀▘▐▛▀▚▖▐▌ ▝▜▌▐▛▀▀▘▐▌   ▐▛▀▚▖▐▌ ▐▌  █  
-            ▐▌ ▐▌▐▙▄▄▖▐▌ ▐▌▐▌  ▐▌▐▙▄▄▖▐▙▄▄▖▐▙▄▞▘▝▚▄▞▘  █  
+            ▐▌▗▞▘▐▌   ▐▌ ▐▌▐▛▚▖▐▌▐▌   ▐▌   ▐▌ ▐▌▐▌ ▐▌  █
+            ▐▛▚▖ ▐▛▀▀▘▐▛▀▚▖▐▌ ▝▜▌▐▛▀▀▘▐▌   ▐▛▀▚▖▐▌ ▐▌  █
+            ▐▌ ▐▌▐▙▄▄▖▐▌ ▐▌▐▌  ▐▌▐▙▄▄▖▐▙▄▄▖▐▙▄▞▘▝▚▄▞▘  █
 
                       POPCORN CLI - GPU MODE
-             
+
           ┌────────────────────────────────────────────┐
           │  ╔══════════════════════════════════╗   ϟϟ │
           │  ║ ▄▄ Graphics Processing Unit  ▄▄║ ║      │▒
@@ -98,15 +98,15 @@ pub fn get_ascii_art_frame(frame: u16) -> String {
           │  └──────────────────────────────────┘      │▒
           └────────────────────────────────────────────┘▒
            ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-             ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀"#.to_string(),
+             ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀"#
         _ => r#"
             ▗▖ ▗▖▗▄▄▄▖▗▄▄▖ ▗▖  ▗▖▗▄▄▄▖▗▖   ▗▄▄▖  ▗▄▖ ▗▄▄▄▖
-            ▐▌▗▞▘▐▌   ▐▌ ▐▌▐▛▚▖▐▌▐▌   ▐▌   ▐▌ ▐▌▐▌ ▐▌  █  
-            ▐▛▚▖ ▐▛▀▀▘▐▛▀▚▖▐▌ ▝▜▌▐▛▀▀▘▐▌   ▐▛▀▚▖▐▌ ▐▌  █  
-            ▐▌ ▐▌▐▙▄▄▖▐▌ ▐▌▐▌  ▐▌▐▙▄▄▖▐▙▄▄▖▐▙▄▞▘▝▚▄▞▘  █  
+            ▐▌▗▞▘▐▌   ▐▌ ▐▌▐▛▚▖▐▌▐▌   ▐▌   ▐▌ ▐▌▐▌ ▐▌  █
+            ▐▛▚▖ ▐▛▀▀▘▐▛▀▚▖▐▌ ▝▜▌▐▛▀▀▘▐▌   ▐▛▀▚▖▐▌ ▐▌  █
+            ▐▌ ▐▌▐▙▄▄▖▐▌ ▐▌▐▌  ▐▌▐▙▄▄▖▐▙▄▄▖▐▙▄▞▘▝▚▄▞▘  █
 
                       POPCORN CLI - GPU MODE
-             
+
           ┌────────────────────────────────────────────┐
           │  ╔══════════════════════════════════╗  ϟϟϟ │
           │  ║ ▄▄ Graphics Processing Unit  ▄▄║ ║      │▒
@@ -122,20 +122,15 @@ pub fn get_ascii_art_frame(frame: u16) -> String {
           │  └──────────────────────────────────┘      │▒
           └────────────────────────────────────────────┘▒
            ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-             ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀"#.to_string()
-    }
+             ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀"#
+    }.to_string()
 }
 
-pub fn get_ascii_art() -> String {
-    get_ascii_art_frame(0)
-}
-
-pub fn display_ascii_art() {
-    let art = get_ascii_art();
-    println!("{}", art);
-}
-
-pub fn custom_wrap(initial_text: String, remaining_text: String, available_width: usize) -> Vec<String> {
+pub fn custom_wrap(
+    initial_text: String,
+    remaining_text: String,
+    available_width: usize,
+) -> Vec<String> {
     let mut lines = vec![initial_text];
     let mut current_line = String::with_capacity(available_width);
     for word in remaining_text.split_whitespace() {

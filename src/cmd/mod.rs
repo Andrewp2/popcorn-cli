@@ -174,7 +174,9 @@ pub async fn execute(cli: Cli) -> Result<()> {
                 )
                 .await
             } else {
-                Err(anyhow!("No command or submission file specified. Use --help for usage."))
+                Err(anyhow!(
+                    "No command or submission file specified. Use --help for usage."
+                ))
             }
         }
     }
